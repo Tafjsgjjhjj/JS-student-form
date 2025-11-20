@@ -67,7 +67,7 @@
     }
 
     .btn-box {
-     text-align:center;
+      text-align:center;
       margin-top: 20px;
     }
 
@@ -103,17 +103,16 @@
 
     <div class="form-group">
       <label>Student ID</label>
-      <input type="text" id="studentID" placeholder="**-****" required>
-      <div class="error-msg" id="idError">The format is *-***** (e.g., 12-3456)</div>
+      <input type="text" id="studentID" placeholder="*-***" required>
+      <div class="error-msg" id="idError">The format is -**** (e.g., 12-3456)</div>
     </div>
 
     <div class="form-group">
       <label>Name</label>
-      <input type="text" id="studentName" placeholder="First, Middle, Last" required>
-      <div class="error-msg" id="nameError">The format is First Middle Last </div>
+      <input type="text" id="studentName" placeholder="Full Name" required>
+      <div class="error-msg" id="nameError">Please enter your full name</div>
     </div>
    
-    
     <div class="form-group">
       <label>Section</label>
       <input type="text" id="section" required>
@@ -131,7 +130,6 @@
     </div>
     
     <div class="btn-box">
-       
       <button class="btn" type="submit">Next</button>
     </div>
 
@@ -146,7 +144,8 @@
   const form = document.getElementById('studentForm');
   const fields = [
     {el: 'studentID', pattern: /^\d{2}-\d+$/, error: 'idError'},
-    {el: 'studentName', pattern: /^[A-Za-z]+ [A-Za-z]+ [A-Za-z]+$/, error: 'nameError'}
+    // Now the name just needs to be non-empty (any characters)
+    {el: 'studentName', pattern: /.+/, error: 'nameError'}
   ];
 
   form.onsubmit = e => {
@@ -154,8 +153,12 @@
     fields.forEach(f => {
       const input = document.getElementById(f.el);
       const err = document.getElementById(f.error);
-      if (!f.pattern.test(input.value.trim())) { err.style.display='block'; valid=false; }
-      else { err.style.display='none'; }
+      if (!f.pattern.test(input.value.trim())) { 
+        err.style.display='block'; 
+        valid=false; 
+      } else { 
+        err.style.display='none'; 
+      }
     });
     if (!valid) e.preventDefault();
   };
@@ -163,4 +166,3 @@
 
 </body>
 </html>
-

@@ -167,7 +167,7 @@ footer {
   </form>
 </div>
 
-<!-- Floating center message -->
+
 <div id="formSubmitMsg">Form Submitted</div>
 
 <footer>
@@ -185,7 +185,7 @@ const birthError = document.getElementById('birthError');
 const contactError = document.getElementById('contactError');
 const submitMsg = document.getElementById('formSubmitMsg');
 
-// Limit contact number to digits and max 11
+
 contactInput.addEventListener('input', () => {
   contactInput.value = contactInput.value.replace(/\D/g,'').slice(0,11);
 });
@@ -210,7 +210,6 @@ form.addEventListener('submit', (e) => {
 
   if(!valid) return;
 
-  // Show floating message
   submitMsg.style.display='block';
   setTimeout(()=> submitMsg.style.display='none', 2000);
 });
@@ -218,4 +217,5 @@ form.addEventListener('submit', (e) => {
 
 </body>
 </html>
+
 
